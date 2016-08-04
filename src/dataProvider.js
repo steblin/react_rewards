@@ -29,7 +29,7 @@ var DataProvider = function() {
         },
 
         getStatusTypes() {
-            var types = [];
+            var types = ['all'];
             this.getRewards().forEach(reward => {
                 let { status } = reward;
 
