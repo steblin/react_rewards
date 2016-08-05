@@ -12,20 +12,27 @@ var DataProvider = function() {
     }
 
     return {
+        getStorageContent () {
+            return JSON.parse(storage[storageKey]);
+        },
+
         getRewards(status = 'all') {
-            var rewards =  JSON.parse(storage[storageKey]).rewards;
+            var rewards =  this.getStorageContent().rewards;
 
             if (status !== 'all') {
                 /*filtering rewards by status*/
                 rewards = R.filter(R.propEq('status', status))(rewards);
             }
 
-            rewards =  rewards.map(reward => {
-                reward.user = reward.user.name;
-                return reward;
-            });
-
             return rewards;
+        },
+
+        getUsers() {
+            return this.getStorageContent().userList;
+        },
+
+        getUserById(id) {
+            return  R.find(R.propEq('id', +id))(this.getUsers());
         },
 
         getStatusTypes() {
@@ -41,7 +48,19 @@ var DataProvider = function() {
             return types;
         },
 
-        tmstmp: new Date()
+        getItemById(id) {
+            return  R.find(R.propEq('id', +id))(this.getRewards());
+        },
+
+        updateItem(id, data) {
+            var storageContent = this.getStorageContent(),
+                rewardsList = storageContent.rewards,
+                itemIndex = R.findIndex(R.propEq('id', +id))(rewardsList);
+
+            rewardsList[itemIndex] = R.merge(rewardsList[itemIndex], data);
+
+            storage.setItem(storageKey, JSON.stringify(R.merge(storageContent, {rewards: rewardsList})));
+        }
     };
 
 };

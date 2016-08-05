@@ -1,0 +1,32 @@
+@import "../node_modules/react-datepicker/dist/react-datepicker.min.css";
+
+.nav-tabs > li > a.active,
+.nav-tabs > li > a:hover.active,
+.nav-tabs > li > a:focus.active {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.logoLink img{
+    margin-top: 15px;
+}
+
+.nav {
+    margin-bottom: 25px;
+}
+
+#edit-form select{
+    height: 30px;
+    min-width: 175px;
+}
+
+.griddle .top-section {
+    margin-bottom: 5px;
+}
+
+.success-msg {
+    margin-left: 15px;
+}

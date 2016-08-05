@@ -1,5 +1,5 @@
 var user1 = { id: 1, name: 'Joe Smith' };
-var user2 = { id: 1, name: 'Sue Mae' };
+var user2 = { id: 2, name: 'Sue Mae' };
 
 var rewards = [
     {
